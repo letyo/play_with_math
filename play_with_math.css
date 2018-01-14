@@ -1,0 +1,312 @@
+/* xxxxxxxxxxxxxxxxxxxxxxxxxx design of the drag'n'drop xxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+html,
+body {
+	box-sizing: border-box;
+	min-width: 300px;
+	padding: 0;
+	background-color: #B0C4DE;
+}
+
+*:not(.dropdown_place, .draggable) {
+	pointer-events: none;
+}
+
+p {
+	margin: 0;
+}
+
+#exercises,
+#results {
+	display: inline-block;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 150px;
+	font-weight: bold;
+}
+
+#exercises {
+	left: 5px;
+}
+
+#results {
+	left: 155px;
+	max-width: 450px;
+}
+
+.exercises,
+.results {
+	width: 100px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    position: relative;
+}
+
+.exercises {
+	
+}
+
+.results {
+    height: 35px;
+    display: inline-block;
+}
+
+.result,
+.draggable {
+	padding: 2px;
+	border-radius: 5px;
+}
+
+.result {
+	margin: 5px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: inline-block;
+	background-color: gray;
+}
+
+.dropdown_place .draggable {
+	margin: 5px;
+}
+
+.draggable {
+	display: table;
+	background-color: rgba(141, 157, 178, 1);
+}
+
+.dropdown_target {
+	border: 2px dashed red;
+}
+
+.true {
+	background-color: green;
+}
+
+.false {
+	background-color: red;
+}
+
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxx the write-outs xxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+#datas div {
+	display: table;	
+	margin: 5px 0;
+}
+
+#datas p {
+	padding: 2px;
+	border-radius: 5px;
+	background-color: rgba(141, 157, 178, 1);
+}
+
+#remaining_time {
+	color: red;
+	font-weight: bold;
+}
+
+#won {
+	background-color: green !important;
+	font-weight: bold;
+}
+
+#lost {
+	background-color: red !important;
+	font-weight: bold;
+}
+
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxx input fields xxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+#custom_difficulty {
+	display: none;
+}
+
+input[type=submit] {
+	background-color: rgba(141, 157, 178, 1);
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 2px;
+	margin: 10px 10px; 
+	outline: none;
+}
+
+select {
+	background-color: rgba(141, 157, 178, 1);
+	outline: none;
+	border-radius: 5px;
+	margin: 10px 10px; 
+}
+
+#infoButton {
+	margin: 10px 10px; 
+	border-radius: 50%;
+	outline: none;
+	background-color: rgba(141, 157, 178, 1);
+	font-weight: bold;
+	font-style: italic;
+	font-family: cursive;
+}
+
+#container_input_custom {
+	margin: 10px 0;
+	width: 300px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#container_input_custom_text {
+	font-weight: bold;
+}
+
+.container_input_custom {
+	display: block;
+	margin: 10px 10px;
+}
+
+.input_custom_text {
+
+}
+
+.input_custom {
+	width: 50px;
+	position: absolute;
+	left: 175px;
+	border-radius: 5px;
+	background-color: rgba(141, 157, 178, 1);
+	outline: none;
+}
+
+.input_custom:focus {
+	border: 1px solid black;
+}
+
+#container_checkbox_custom {
+	margin: 10px 0;
+	width: 200px;
+	display: inline-block;
+}
+
+#container_checkbox_custom_text {
+	font-weight: bold;
+}
+
+.container_checkbox_custom {
+	margin: 10px 10px;
+	position: relative;
+}
+
+/* make a custom checkbox */
+.checkbox_custom {
+	visibility: hidden;
+}
+
+.container_checkbox_custom label {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    left: 0;
+    background-color: rgba(141, 157, 178, 1);
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.container_checkbox_custom label:after {
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 4px;
+    top: 4px;
+    left: 2.5px;
+    background: transparent;
+    border: 2px solid white;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-60deg);
+}
+
+.container_checkbox_custom input[type=checkbox]:checked + label {
+    background-color: gray;
+}
+
+.container_checkbox_custom input[type=checkbox]:checked + label:after {
+    opacity: 1;
+}
+
+
+/* xxxxxxxxxxxxxxxxxxxxxxxxxx modals xxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+#modal {
+	display: none;
+	position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+}
+
+.modal_content {
+	position: relative;
+    background-color: rgba(141, 157, 178, 1);
+    margin: auto;
+    padding: 10px;
+    width: 85%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 5px;
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+#close {
+    color: black;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 2px;
+}
+#close:hover {
+    background-color: black;
+    text-decoration: none;
+    cursor: pointer;
+    color: rgba(141, 157, 178, 1);
+    transition: 0.6s ease;
+}
+
+/* az animáció, amikor "rázoomolunk" (amikor a weblapon lévő kis képekre kattintunk és feljön a modal) */
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+ 
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+#info,
+#errors {
+	font-weight: bold;
+	font-style: italic;
+	font-family: cursive;
+}
+
+#errors {
+	color: red;
+}
